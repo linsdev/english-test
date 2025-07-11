@@ -173,6 +173,7 @@
       const box = document.getElementById('resultBox');
       box.textContent = `Score: ${score}/${quizData.length} — ${level}`;
       box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth' });
     }
 
     loadQuiz();

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>English Level Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .question { margin-bottom: 20px; }
+        .result { font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>English Level Test</h1>
+    <form id="englishTest">
+
+        <div class="question">
+            <label>1. Choose the correct sentence:</label><br>
+            <input type="radio" name="q1" value="A"> A. He go to school every day.<br>
+            <input type="radio" name="q1" value="B"> B. He goes to school every day.<br>
+            <input type="radio" name="q1" value="C"> C. He going to school every day.<br>
+            <input type="radio" name="q1" value="D"> D. He gone to school every day.<br>
+        </div>
+
+        <div class="question">
+            <label>2. Fill in the blank: I’m not interested ___ politics.</label><br>
+            <input type="radio" name="q2" value="A"> A. on<br>
+            <input type="radio" name="q2" value="B"> B. in<br>
+            <input type="radio" name="q2" value="C"> C. at<br>
+            <input type="radio" name="q2" value="D"> D. for<br>
+        </div>
+
+        <div class="question">
+            <label>3. Choose the word that is closest in meaning to "quickly":</label><br>
+            <input type="radio" name="q3" value="A"> A. Slowly<br>
+            <input type="radio" name="q3" value="B"> B. Hastily<br>
+            <input type="radio" name="q3" value="C"> C. Quietly<br>
+            <input type="radio" name="q3" value="D"> D. Rarely<br>
+        </div>
+
+        <div class="question">
+            <label>4. Choose the correct question form:</label><br>
+            <input type="radio" name="q4" value="A"> A. Do you can speak French?<br>
+            <input type="radio" name="q4" value="B"> B. Can you speak French?<br>
+            <input type="radio" name="q4" value="C"> C. You can speak French?<br>
+            <input type="radio" name="q4" value="D"> D. Can speak you French?<br>
+        </div>
+
+        <div class="question">
+            <label>5. Vocabulary Check: Which one is an emotion?</label><br>
+            <input type="radio" name="q5" value="A"> A. Courage<br>
+            <input type="radio" name="q5" value="B"> B. Happiness<br>
+            <input type="radio" name="q5" value="C"> C. Strength<br>
+            <input type="radio" name="q5" value="D"> D. Speed<br>
+        </div>
+
+        <div class="question">
+            <label>6. Choose the correct word: I have lived in this city ___ five years.</label><br>
+            <input type="radio" name="q6" value="A"> A. since<br>
+            <input type="radio" name="q6" value="B"> B. for<br>
+            <input type="radio" name="q6" value="C"> C. during<br>
+            <input type="radio" name="q6" value="D"> D. at<br>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Check Answers</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function checkAnswers() {
+            const form = document.forms['englishTest'];
+            let score = 0;
+
+            if (form.q1.value === 'B') score++;
+            if (form.q2.value === 'B') score++;
+            if (form.q3.value === 'B') score++;
+            if (form.q4.value === 'B') score++;
+            if (form.q5.value === 'B') score++;
+            if (form.q6.value === 'B') score++;
+
+            let resultText = '';
+            if (score === 6) resultText = 'Level: Upper-Intermediate (B2)';
+            else if (score >= 4) resultText = 'Level: Intermediate (B1)';
+            else resultText = 'Level: Beginner (A1-A2)';
+
+            document.getElementById('result').innerText = `Score: ${score}/6 — ${resultText}`;
+        }
+    </script>
+</body>
+</html>

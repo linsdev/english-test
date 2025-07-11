@@ -1,68 +1,68 @@
 [
   {
     "id": "q1",
-    "text": "1. Choose the correct sentence:",
+    "text": "1. Choose the correct negative form:",
     "options": {
-      "A": "He go to school every day.",
-      "B": "He goes to school every day.",
-      "C": "He going to school every day.",
-      "D": "He gone to school every day."
+      "A": "She don't like coffee.",
+      "B": "She doesn't likes coffee.",
+      "C": "She doesn't like coffee.",
+      "D": "She not like coffee."
     },
-    "answer": "B"
+    "answer": "C"
   },
   {
     "id": "q2",
-    "text": "2. Fill in the blank: I’m not interested ___ politics.",
+    "text": "2. Which sentence is in the past tense?",
     "options": {
-      "A": "on",
-      "B": "in",
-      "C": "at",
-      "D": "for"
+      "A": "He eats lunch.",
+      "B": "He is eating lunch.",
+      "C": "He ate lunch.",
+      "D": "He will eat lunch."
     },
-    "answer": "B"
+    "answer": "C"
   },
   {
     "id": "q3",
-    "text": "3. Choose the word that is closest in meaning to \"quickly\":",
+    "text": "3. Choose the correct word: I’m looking forward ___ the weekend.",
     "options": {
-      "A": "Slowly",
-      "B": "Hastily",
-      "C": "Quietly",
-      "D": "Rarely"
+      "A": "for",
+      "B": "to",
+      "C": "at",
+      "D": "on"
     },
     "answer": "B"
   },
   {
     "id": "q4",
-    "text": "4. Choose the correct question form:",
+    "text": "4. What does 'frequently' mean?",
     "options": {
-      "A": "Do you can speak French?",
-      "B": "Can you speak French?",
-      "C": "You can speak French?",
-      "D": "Can speak you French?"
+      "A": "Never",
+      "B": "Sometimes",
+      "C": "Often",
+      "D": "Rarely"
     },
-    "answer": "B"
+    "answer": "C"
   },
   {
     "id": "q5",
-    "text": "5. Vocabulary Check: Which one is an emotion?",
+    "text": "5. Which is a correct conditional sentence?",
     "options": {
-      "A": "Courage",
-      "B": "Happiness",
-      "C": "Strength",
-      "D": "Speed"
+      "A": "If it rains, we will stay home.",
+      "B": "If it will rain, we stay home.",
+      "C": "If it rained, we will stay home.",
+      "D": "If it raining, we stayed home."
     },
-    "answer": "B"
+    "answer": "A"
   },
   {
     "id": "q6",
-    "text": "6. Choose the correct word: I have lived in this city ___ five years.",
+    "text": "6. Choose the correct comparative form:",
     "options": {
-      "A": "since",
-      "B": "for",
-      "C": "during",
-      "D": "at"
+      "A": "more fast",
+      "B": "fastly",
+      "C": "faster",
+      "D": "fastest"
     },
-    "answer": "B"
+    "answer": "C"
   }
 ]

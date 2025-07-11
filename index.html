@@ -1,91 +1,181 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>English Level Test</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        .question { margin-bottom: 20px; }
-        .result { font-weight: bold; margin-top: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English Level Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 16px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .result-box {
+      display: none;
+      background-color: #e0ffe0;
+      border-left: 6px solid #4CAF50;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #2e7d32;
+    }
+
+    .question {
+      background: #ffffff;
+      border-radius: 10px;
+      margin-bottom: 64px;
+    }
+
+    .question label {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      font-size: 16px;
+      padding: 14px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      background-color: white;
+      color: black;
+    }
+
+    .option-btn.selected {
+      color: white;
+      background-color: #4CAF50;
+      border-color: #4CAF50;
+    }
+
+    .option-btn.wrong {
+      background-color: #e89999 !important;
+      border-color: #e89999 !important;
+      color: black !important;
+    }
+
+    button[type="button"] {
+      font-size: 18px;
+      width: 100%;
+      padding: 16px;
+      margin-top: 16px;
+      background-color: #eee;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button[type="button"]:hover {
+      color: white;
+      background-color: teal;
+    }
+
+    button[id="submit"] {
+      color: white;
+      background-color: #4CAF50;
+    }
+  </style>
 </head>
 <body>
-    <h1>English Level Test</h1>
-    <form id="englishTest">
+  <div id="resultBox" class="result-box"></div>
 
-        <div class="question">
-            <label>1. Choose the correct sentence:</label><br>
-            <input type="radio" name="q1" value="A"> A. He go to school every day.<br>
-            <input type="radio" name="q1" value="B"> B. He goes to school every day.<br>
-            <input type="radio" name="q1" value="C"> C. He going to school every day.<br>
-            <input type="radio" name="q1" value="D"> D. He gone to school every day.<br>
-        </div>
+  <h1>English Level Test</h1>
+  <form id="englishTest"></form>
+  <button id="submit" type="button" onclick="checkAnswers()">Check Answers</button>
 
-        <div class="question">
-            <label>2. Fill in the blank: I’m not interested ___ politics.</label><br>
-            <input type="radio" name="q2" value="A"> A. on<br>
-            <input type="radio" name="q2" value="B"> B. in<br>
-            <input type="radio" name="q2" value="C"> C. at<br>
-            <input type="radio" name="q2" value="D"> D. for<br>
-        </div>
+  <script>
+    let quizData = [];
+    const selections = {};
 
-        <div class="question">
-            <label>3. Choose the word that is closest in meaning to "quickly":</label><br>
-            <input type="radio" name="q3" value="A"> A. Slowly<br>
-            <input type="radio" name="q3" value="B"> B. Hastily<br>
-            <input type="radio" name="q3" value="C"> C. Quietly<br>
-            <input type="radio" name="q3" value="D"> D. Rarely<br>
-        </div>
+    async function loadQuiz() {
+      const response = await fetch('./quiz.json');
+      quizData = await response.json();
+      renderQuiz();
+    }
 
-        <div class="question">
-            <label>4. Choose the correct question form:</label><br>
-            <input type="radio" name="q4" value="A"> A. Do you can speak French?<br>
-            <input type="radio" name="q4" value="B"> B. Can you speak French?<br>
-            <input type="radio" name="q4" value="C"> C. You can speak French?<br>
-            <input type="radio" name="q4" value="D"> D. Can speak you French?<br>
-        </div>
+    function renderQuiz() {
+      const form = document.getElementById('englishTest');
+      quizData.forEach((q) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+        qDiv.dataset.question = q.id;
 
-        <div class="question">
-            <label>5. Vocabulary Check: Which one is an emotion?</label><br>
-            <input type="radio" name="q5" value="A"> A. Courage<br>
-            <input type="radio" name="q5" value="B"> B. Happiness<br>
-            <input type="radio" name="q5" value="C"> C. Strength<br>
-            <input type="radio" name="q5" value="D"> D. Speed<br>
-        </div>
+        const label = document.createElement('label');
+        label.textContent = q.text;
+        qDiv.appendChild(label);
 
-        <div class="question">
-            <label>6. Choose the correct word: I have lived in this city ___ five years.</label><br>
-            <input type="radio" name="q6" value="A"> A. since<br>
-            <input type="radio" name="q6" value="B"> B. for<br>
-            <input type="radio" name="q6" value="C"> C. during<br>
-            <input type="radio" name="q6" value="D"> D. at<br>
-        </div>
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
 
-        <button type="button" onclick="checkAnswers()">Check Answers</button>
-    </form>
-
-    <div class="result" id="result"></div>
-
-    <script>
-        function checkAnswers() {
-            const form = document.forms['englishTest'];
-            let score = 0;
-
-            if (form.q1.value === 'B') score++;
-            if (form.q2.value === 'B') score++;
-            if (form.q3.value === 'B') score++;
-            if (form.q4.value === 'B') score++;
-            if (form.q5.value === 'B') score++;
-            if (form.q6.value === 'B') score++;
-
-            let resultText = '';
-            if (score === 6) resultText = 'Level: Upper-Intermediate (B2)';
-            else if (score >= 4) resultText = 'Level: Intermediate (B1)';
-            else resultText = 'Level: Beginner (A1-A2)';
-
-            document.getElementById('result').innerText = `Score: ${score}/6 — ${resultText}`;
+        for (const [key, value] of Object.entries(q.options)) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'option-btn';
+          btn.dataset.value = key;
+          btn.textContent = `${key}. ${value}`;
+          btn.addEventListener('click', () => {
+            qDiv.querySelectorAll('.option-btn').forEach(b => {
+              b.classList.remove('selected', 'wrong');
+            });
+            btn.classList.add('selected');
+            selections[q.id] = key;
+          });
+          optionsDiv.appendChild(btn);
         }
-    </script>
+
+        qDiv.appendChild(optionsDiv);
+        form.appendChild(qDiv);
+      });
+    }
+
+    function checkAnswers() {
+      let score = 0;
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('wrong');
+      });
+
+      quizData.forEach(q => {
+        const question = document.querySelector(`.question[data-question="${q.id}"]`);
+        const selectedBtn = question.querySelector('.option-btn.selected');
+        if (selectedBtn) {
+          const val = selectedBtn.dataset.value;
+          if (val === q.answer) {
+            score++;
+          } else {
+            selectedBtn.classList.add('wrong');
+          }
+        }
+      });
+
+      let level = '';
+      if (score === quizData.length) level = 'Level: Upper-Intermediate (B2)';
+      else if (score >= 4) level = 'Level: Intermediate (B1)';
+      else level = 'Level: Beginner (A1-A2)';
+
+      const box = document.getElementById('resultBox');
+      box.textContent = `Score: ${score}/${quizData.length} — ${level}`;
+      box.style.display = 'block';
+    }
+
+    loadQuiz();
+  </script>
 </body>
 </html>
